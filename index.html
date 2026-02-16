@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frostmate | Smart Fridge Companion</title>
+  
+  <link rel="icon" type="image/png" href="favicon.png">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset margins and set the background */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b1120;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      text-align: center;
+      padding: 80px 20px 40px 20px;
+      position: relative;
+    }
+
+    /* Logo Styling */
+    .logo-container {
+      margin-bottom: 20px;
+    }
+
+    .brand-logo {
+      max-width: 300px; /* Adjust size based on your logo proportions */
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Subtle background glow effect */
+    .glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, rgba(11, 17, 32, 0) 70%);
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      max-width: 500px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      transition: all 0.5s ease;
+    }
+
+    /* Interactive Button Wrapper */
+    .button-wrapper {
+      min-height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .cta-button {
+      background-color: #38bdf8;
+      color: #0b1120;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 16px 36px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+      background-color: #7dd3fc;
+    }
+
+    .cta-button.hidden {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.9);
+      pointer-events: none;
+      position: absolute;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 640px;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.1);
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transform: translateY(-30px);
+      transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                  opacity 0.6s ease 0.2s, 
+                  transform 0.6s ease 0.1s;
+    }
+
+    .form-container.active {
+      max-height: 800px;
+      opacity: 1;
+      transform: translateY(0);
+      margin-bottom: 40px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 650px;
+      border: none;
+      display: block;
+    }
+
+    footer {
+      margin-top: auto;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    @media (max-width: 600px) {
+      .brand-logo { max-width: 220px; }
+      .subtitle { font-size: 1.1rem; }
+      .form-container.active { max-height: 900px; }
+      iframe { height: 750px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow"></div>
+
+  <div class="logo-container">
+    <img src="logo.png" alt="Frostmate Logo" class="brand-logo">
+  </div>
+
+  <p class="subtitle">
+    The ultimate smart fridge companion is coming. 🔥<br>
+    Sign up now to get early access and stay in the flow.
+  </p>
+
+  <div class="button-wrapper">
+    <button id="revealBtn" class="cta-button">
+      Get Early Access
+    </button>
+  </div>
+
+  <div id="googleForm" class="form-container">
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLScFMJ43YXpp_iyDqfPpwHoSsCx2dGEj-UPqHQuGlRd0aJ7SkA/viewform?embedded=true" 
+      title="Frostmate Early Access Form"
+      marginheight="0" 
+      marginwidth="0">
+      Loading…
+    </iframe>
+  </div>
+
+  <footer>Made with ❤️ by Frostmate</footer>
+
+  <script>
+    document.getElementById('revealBtn').addEventListener('click', function() {
+      this.classList.add('hidden');
+      const form = document.getElementById('googleForm');
+      form.classList.add('active');
+      setTimeout(() => {
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 300);
+    });
+  </script>
+
+</body>
+</html>
